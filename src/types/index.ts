@@ -12,4 +12,10 @@ export interface Product {
   slug: string;
   featured?: boolean;
   onSale?: boolean;
+  dataAiHint?: string;
+}
+
+export interface CartItem {
+  product: Product;
+  quantity: number;
 }

@@ -1,12 +1,14 @@
+
 "use client";
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Product } from '@/types';
+import type { Product } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { ShoppingCart, Star } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
+import { useCart } from '@/context/CartContext';
 
 interface ProductCardProps {
   product: Product;
@@ -14,14 +16,15 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const { toast } = useToast();
+  const { addToCart } = useCart();
 
   const handleAddToCart = () => {
+    addToCart(product);
     toast({
       title: `${product.name} added to cart!`,
       description: "You can continue shopping or proceed to checkout.",
-      variant: "default", // 'default' or 'destructive'
+      variant: "default",
     });
-    // Actual add to cart logic would go here
   };
 
   return (

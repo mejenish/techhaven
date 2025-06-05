@@ -1,6 +1,8 @@
+
 "use client";
 
 import Link from 'next/link';
+import * as React from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,15 +12,73 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, ShoppingCart, UserCircle, ChevronDown, Laptop, Headphones, RadioTower, Cpu } from "lucide-react";
+import { useCart } from '@/context/CartContext';
 
 const categories = [
-  { name: "Laptops", href: "/category/laptops", icon: Laptop },
-  { name: "Accessories", href: "/category/accessories", icon: Headphones },
-  { name: "Drones", href: "/category/drones", icon: RadioTower },
-  { name: "Motherboards", href: "/category/motherboards", icon: Cpu },
+  { name: "Laptops", href: "/category/laptops", icon: Laptop, subCategories: [
+    { name: "Gaming Laptops", href: "/category/laptops/gaming"},
+    { name: "Professional Laptops", href: "/category/laptops/professional"},
+    { name: "Budget Laptops", href: "/category/laptops/budget"},
+  ]},
+  { name: "Accessories", href: "/category/accessories", icon: Headphones, subCategories: [
+    { name: "Keyboards", href: "/category/accessories/keyboards"},
+    { name: "Mice", href: "/category/accessories/mice"},
+    { name: "Monitors", href: "/category/accessories/monitors"},
+  ] },
+  { name: "Drones", href: "/category/drones", icon: RadioTower, subCategories: [
+    { name: "Camera Drones", href: "/category/drones/camera"},
+    { name: "Racing Drones", href: "/category/drones/racing"},
+    { name: "Toy Drones", href: "/category/drones/toy"},
+  ] },
+  { name: "Motherboards", href: "/category/motherboards", icon: Cpu, subCategories: [
+    { name: "AMD Motherboards", href: "/category/motherboards/amd"},
+    { name: "Intel Motherboards", href: "/category/motherboards/intel"},
+  ] },
 ];
 
+interface CategoryMenuProps {
+  category: typeof categories[0];
+}
+
+function CategoryMenu({ category }: CategoryMenuProps) {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+      <div
+        className="flex items-center"
+        onMouseEnter={() => setIsOpen(true)}
+        onMouseLeave={() => setIsOpen(false)}
+      >
+        <Button variant="ghost" className="text-foreground hover:text-primary pr-1 py-2 h-auto rounded-r-none" asChild>
+          <Link href={category.href}>{category.name}</Link>
+        </Button>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" className="text-foreground hover:text-primary pl-1 pr-2 py-2 h-auto rounded-l-none">
+            <ChevronDown className="h-4 w-4" />
+          </Button>
+        </DropdownMenuTrigger>
+      </div>
+      <DropdownMenuContent 
+        align="start" 
+        className="mt-1"
+        onMouseEnter={() => setIsOpen(true)} // Keep open when mouse enters content
+        onMouseLeave={() => setIsOpen(false)} // Close when mouse leaves content
+      >
+        {category.subCategories.map((subCategory) => (
+          <DropdownMenuItem key={subCategory.name} asChild>
+            <Link href={subCategory.href}>{subCategory.name}</Link>
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+
 export default function Header() {
+  const { getCartTotalQuantity } = useCart();
+  const totalQuantity = getCartTotalQuantity();
+
   return (
     <header className="bg-card shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-4 py-3">
@@ -26,22 +86,9 @@ export default function Header() {
           <Link href="/" className="text-3xl font-headline font-bold text-primary">
             Tech Haven
           </Link>
-          <nav className="hidden md:flex items-center space-x-2 lg:space-x-4">
+          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
             {categories.map((category) => (
-              <DropdownMenu key={category.name}>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="text-foreground hover:text-primary">
-                    {category.name} <ChevronDown className="ml-1 h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  {/* These are example sub-categories. In a real app, these would be dynamic. */}
-                  <DropdownMenuItem asChild><Link href={category.href}>All {category.name}</Link></DropdownMenuItem>
-                  <DropdownMenuItem asChild><Link href={`${category.href}/gaming`}>Gaming</Link></DropdownMenuItem>
-                  <DropdownMenuItem asChild><Link href={`${category.href}/professional`}>Professional</Link></DropdownMenuItem>
-                  <DropdownMenuItem asChild><Link href={`${category.href}/budget`}>Budget</Link></DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <CategoryMenu key={category.name} category={category} />
             ))}
           </nav>
           <div className="flex items-center space-x-2 lg:space-x-4">
@@ -52,9 +99,13 @@ export default function Header() {
             <Button variant="ghost" size="icon" aria-label="User Account">
               <UserCircle className="h-6 w-6 text-primary" />
             </Button>
-            <Button variant="ghost" size="icon" aria-label="Shopping Cart">
+            <Button variant="ghost" size="icon" aria-label="Shopping Cart" className="relative">
               <ShoppingCart className="h-6 w-6 text-primary" />
-              <span className="absolute top-2 right-2 -mt-1 -mr-1 flex h-4 w-4 items-center justify-center rounded-full bg-accent text-xs text-accent-foreground">0</span>
+              {totalQuantity > 0 && (
+                <span className="absolute top-0 right-0 -mt-1 -mr-1 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-xs text-accent-foreground">
+                  {totalQuantity}
+                </span>
+              )}
             </Button>
           </div>
         </div>
@@ -69,14 +120,16 @@ export default function Header() {
               <DropdownMenu key={`mobile-${category.name}`}>
                 <DropdownMenuTrigger asChild>
                   <Button variant="outline" className="w-full justify-between text-foreground hover:text-primary">
-                    {category.name} <ChevronDown className="ml-1 h-4 w-4" />
+                    <Link href={category.href} className="flex-grow text-left">{category.name}</Link>
+                    <ChevronDown className="ml-1 h-4 w-4 flex-shrink-0" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-full">
-                  <DropdownMenuItem asChild><Link href={category.href}>All {category.name}</Link></DropdownMenuItem>
-                  <DropdownMenuItem asChild><Link href={`${category.href}/gaming`}>Gaming</Link></DropdownMenuItem>
-                  <DropdownMenuItem asChild><Link href={`${category.href}/professional`}>Professional</Link></DropdownMenuItem>
-                  <DropdownMenuItem asChild><Link href={`${category.href}/budget`}>Budget</Link></DropdownMenuItem>
+                <DropdownMenuContent align="start" className="w-[calc(50vw-1rem)]">
+                   {category.subCategories.map((subCategory) => (
+                    <DropdownMenuItem key={subCategory.name} asChild>
+                        <Link href={subCategory.href}>{subCategory.name}</Link>
+                    </DropdownMenuItem>
+                    ))}
                 </DropdownMenuContent>
               </DropdownMenu>
             ))}
