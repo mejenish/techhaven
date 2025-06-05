@@ -13,6 +13,12 @@ export const mockProducts: Product[] = [
     rating: 4.8,
     reviewsCount: 120,
     dataAiHint: 'laptop modern',
+    specifications: {
+      RAM: '16GB DDR4',
+      Storage: '512GB NVMe SSD',
+      Processor: 'Intel Core i7, 12th Gen',
+      Display: '14-inch QHD IPS',
+    }
   },
   {
     id: '2',
@@ -27,6 +33,13 @@ export const mockProducts: Product[] = [
     rating: 4.9,
     reviewsCount: 95,
     dataAiHint: 'gaming laptop',
+    specifications: {
+      RAM: '32GB DDR5',
+      Storage: '1TB NVMe SSD Gen4',
+      Processor: 'AMD Ryzen 9, 7000 Series',
+      GPU: 'NVIDIA GeForce RTX 4070',
+      Display: '17.3-inch QHD 165Hz',
+    }
   },
   {
     id: '3',
@@ -38,6 +51,11 @@ export const mockProducts: Product[] = [
     slug: 'wireless-ergonomic-mouse',
     featured: true,
     dataAiHint: 'computer mouse',
+    specifications: {
+      Connectivity: 'Bluetooth 5.0, 2.4GHz Wireless',
+      DPI: 'Adjustable up to 4000 DPI',
+      Buttons: '6 programmable buttons',
+    }
   },
   {
     id: '4',
@@ -48,6 +66,11 @@ export const mockProducts: Product[] = [
     description: 'RGB mechanical keyboard for gaming and typing.',
     slug: 'mechanical-keyboard-rgb',
     dataAiHint: 'keyboard colorful',
+    specifications: {
+      SwitchType: 'Blue Mechanical Switches',
+      Backlight: 'Per-key RGB',
+      Layout: 'Full-size 104 keys',
+    }
   },
   {
     id: '5',
@@ -61,6 +84,12 @@ export const mockProducts: Product[] = [
     rating: 4.7,
     reviewsCount: 75,
     dataAiHint: 'drone flying',
+    specifications: {
+      Camera: '4K HDR Video, 20MP Photos',
+      FlightTime: '30 minutes',
+      Range: '5 km',
+      Features: 'GPS, Obstacle Avoidance',
+    }
   },
   {
     id: '6',
@@ -84,6 +113,12 @@ export const mockProducts: Product[] = [
     slug: 'motherboard-x570-master',
     featured: true,
     dataAiHint: 'motherboard circuit',
+    specifications: {
+      Chipset: 'AMD X570',
+      Socket: 'AM4',
+      FormFactor: 'ATX',
+      RAMSlots: '4 x DDR4',
+    }
   },
   {
     id: '8',
@@ -106,6 +141,8 @@ export const mockProducts: Product[] = [
     description: 'Crystal clear 27-inch 4K UHD monitor.',
     slug: '4k-uhd-monitor-27',
     dataAiHint: 'computer monitor',
+    rating: 4.6,
+    reviewsCount: 88,
   },
   {
     id: '10',
@@ -117,4 +154,101 @@ export const mockProducts: Product[] = [
     slug: 'compact-drone-minifly',
     dataAiHint: 'small drone',
   },
+  {
+    id: '11',
+    name: 'Smart Home Hub Central',
+    category: 'Smart Home',
+    price: 129.99,
+    imageUrl: 'https://placehold.co/400x300.png',
+    description: 'Control all your smart devices from one central hub.',
+    slug: 'smart-home-hub-central',
+    featured: true,
+    rating: 4.5,
+    reviewsCount: 60,
+    dataAiHint: 'smart home device',
+    specifications: {
+      Compatibility: 'Zigbee, Z-Wave, Wi-Fi, Bluetooth',
+      VoiceAssistant: 'Google Assistant, Alexa',
+    }
+  },
+  {
+    id: '12',
+    name: 'Noise Cancelling Headphones Pro',
+    category: 'Accessories',
+    price: 249.00,
+    imageUrl: 'https://placehold.co/300x300.png',
+    description: 'Immersive sound with industry-leading noise cancellation.',
+    slug: 'noise-cancelling-headphones-pro',
+    onSale: true,
+    originalPrice: 299.00,
+    rating: 4.9,
+    reviewsCount: 150,
+    dataAiHint: 'headphones audio',
+  },
+  {
+    id: '13',
+    name: 'Curved Ultrawide Monitor 34-inch',
+    category: 'Accessories',
+    price: 599.99,
+    imageUrl: 'https://placehold.co/600x400.png',
+    description: 'Immersive 34-inch ultrawide curved monitor for productivity and gaming.',
+    slug: 'curved-ultrawide-monitor-34',
+    dataAiHint: 'ultrawide monitor',
+  },
+  {
+    id: '14',
+    name: 'Portable SSD 1TB',
+    category: 'Accessories',
+    price: 119.50,
+    imageUrl: 'https://placehold.co/300x200.png',
+    description: 'Fast and compact 1TB portable SSD for on-the-go storage.',
+    slug: 'portable-ssd-1tb',
+    featured: true,
+    dataAiHint: 'portable ssd',
+  },
+  {
+    id: '15',
+    name: 'VR Headset NextGen',
+    category: 'Gaming',
+    price: 399.00,
+    imageUrl: 'https://placehold.co/500x400.png',
+    description: 'Step into new realities with this next-generation VR headset.',
+    slug: 'vr-headset-nextgen',
+    rating: 4.7,
+    reviewsCount: 110,
+    dataAiHint: 'vr headset gaming',
+  },
+  {
+    id: '16',
+    name: 'Webcam ProStream 1080p',
+    category: 'Accessories',
+    price: 69.99,
+    originalPrice: 89.99,
+    imageUrl: 'https://placehold.co/300x200.png',
+    description: 'High-definition 1080p webcam for streaming and video calls.',
+    slug: 'webcam-prostream-1080p',
+    onSale: true,
+    dataAiHint: 'webcam streaming',
+  },
+  {
+    id: '17',
+    name: 'Gaming Mousepad XXL',
+    category: 'Accessories',
+    price: 29.99,
+    imageUrl: 'https://placehold.co/400x250.png',
+    description: 'Extra large gaming mousepad for maximum precision and comfort.',
+    slug: 'gaming-mousepad-xxl',
+    dataAiHint: 'gaming mousepad',
+  },
+  {
+    id: '18',
+    name: 'Lightweight Travel Laptop',
+    category: 'Laptops',
+    price: 899.00,
+    imageUrl: 'https://placehold.co/600x400.png',
+    description: 'Ultra-portable and lightweight laptop perfect for travel.',
+    slug: 'lightweight-travel-laptop',
+    featured: true,
+    dataAiHint: 'travel laptop',
+  }
 ];

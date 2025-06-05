@@ -19,43 +19,43 @@ const heroSlides = [
   {
     title: "Unleash Peak Performance",
     description: "Discover our latest range of high-powered laptops and cutting-edge electronics.",
-    imageUrl: "https://placehold.co/1000x600.png",
+    imageUrl: "https://placehold.co/1200x500.png",
     dataAiHint: "modern tech setup",
     linkHref: "/category/laptops",
     buttonText: "Shop Laptops",
     titleSize: "text-3xl md:text-4xl",
     descSize: "text-md md:text-lg",
-    buttonSize: "lg" as "lg" | "sm" | "default" | "icon" | null | undefined, // Type assertion for Button size
-    buttonVariant: "default" as "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | null | undefined, // Type assertion for Button variant
+    buttonSize: "lg" as "lg" | "sm" | "default" | "icon" | null | undefined, 
+    buttonVariant: "default" as "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | null | undefined,
     textColor: "text-white",
     descColor: "text-gray-200",
     overlayClass: "bg-gradient-to-t from-black/70 to-transparent"
   },
   {
-    title: "Explore New Heights",
-    description: "Capture breathtaking views with our advanced drones.",
-    imageUrl: "https://placehold.co/600x400.png",
+    title: "Explore New Heights with Drones",
+    description: "Capture breathtaking views with our advanced drones. Perfect for hobbyists and professionals.",
+    imageUrl: "https://placehold.co/1200x500.png",
     dataAiHint: "drone aerial shot",
     linkHref: "/category/drones",
     buttonText: "View Drones",
     titleSize: "text-2xl md:text-3xl",
     descSize: "text-base",
-    buttonSize: "sm" as "lg" | "sm" | "default" | "icon" | null | undefined,
+    buttonSize: "lg" as "lg" | "sm" | "default" | "icon" | null | undefined,
     buttonVariant: "outline" as "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | null | undefined,
     textColor: "text-white",
     descColor: "text-gray-300",
     overlayClass: "bg-black/60"
   },
   {
-    title: "Accessorize Your Setup",
-    description: "Find the perfect accessories to complete your tech ensemble.",
-    imageUrl: "https://placehold.co/600x400.png",
+    title: "Accessorize Your Tech Life",
+    description: "Find the perfect accessories to complete your tech ensemble, from keyboards to headphones.",
+    imageUrl: "https://placehold.co/1200x500.png",
     dataAiHint: "computer accessories",
     linkHref: "/category/accessories",
     buttonText: "Shop Accessories",
     titleSize: "text-2xl md:text-3xl",
     descSize: "text-base",
-    buttonSize: "sm" as "lg" | "sm" | "default" | "icon" | null | undefined,
+    buttonSize: "lg" as "lg" | "sm" | "default" | "icon" | null | undefined,
     buttonVariant: "outline" as "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | null | undefined,
     textColor: "text-white",
     descColor: "text-gray-300",
@@ -84,7 +84,7 @@ export default function HeroSection() {
         <CarouselContent>
           {heroSlides.map((slide, index) => (
             <CarouselItem key={index}>
-              <div className="bg-card rounded-lg shadow-lg overflow-hidden group relative aspect-video">
+              <div className="bg-card rounded-lg shadow-lg overflow-hidden group relative aspect-[21/9]"> {/* Adjusted aspect ratio */}
                 <Image
                   src={slide.imageUrl}
                   alt={slide.title}

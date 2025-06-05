@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/HeroSection";
 import SaleSection from "@/components/SaleSection";
 import FeaturedProductsSection from "@/components/FeaturedProductsSection";
+import OfferShowupSection from "@/components/OfferShowupSection";
 import { mockProducts } from "@/data/products";
 
 export default function HomePage() {
@@ -14,6 +15,7 @@ export default function HomePage() {
       <Header />
       <main className="flex-grow">
         <HeroSection />
+        <OfferShowupSection />
         <FeaturedProductsSection products={featuredProducts} title="Top Picks For You"/>
         <SaleSection products={saleProducts} />
       </main>
