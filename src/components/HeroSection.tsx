@@ -19,12 +19,12 @@ const heroSlides = [
   {
     title: "Unleash Peak Performance",
     description: "Discover our latest range of high-powered laptops and cutting-edge electronics.",
-    imageUrl: "https://placehold.co/1200x500.png",
+    imageUrl: "https://placehold.co/1000x500.png", // Adjusted for new aspect ratio
     dataAiHint: "modern tech setup",
     linkHref: "/category/laptops",
     buttonText: "Shop Laptops",
-    titleSize: "text-3xl md:text-4xl",
-    descSize: "text-md md:text-lg",
+    titleSize: "text-2xl md:text-3xl lg:text-4xl",
+    descSize: "text-sm md:text-base",
     buttonSize: "lg" as "lg" | "sm" | "default" | "icon" | null | undefined, 
     buttonVariant: "default" as "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | null | undefined,
     textColor: "text-white",
@@ -34,12 +34,12 @@ const heroSlides = [
   {
     title: "Explore New Heights with Drones",
     description: "Capture breathtaking views with our advanced drones. Perfect for hobbyists and professionals.",
-    imageUrl: "https://placehold.co/1200x500.png",
+    imageUrl: "https://placehold.co/1000x500.png", // Adjusted for new aspect ratio
     dataAiHint: "drone aerial shot",
     linkHref: "/category/drones",
     buttonText: "View Drones",
-    titleSize: "text-2xl md:text-3xl",
-    descSize: "text-base",
+    titleSize: "text-xl md:text-2xl lg:text-3xl",
+    descSize: "text-sm",
     buttonSize: "lg" as "lg" | "sm" | "default" | "icon" | null | undefined,
     buttonVariant: "outline" as "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | null | undefined,
     textColor: "text-white",
@@ -49,12 +49,12 @@ const heroSlides = [
   {
     title: "Accessorize Your Tech Life",
     description: "Find the perfect accessories to complete your tech ensemble, from keyboards to headphones.",
-    imageUrl: "https://placehold.co/1200x500.png",
+    imageUrl: "https://placehold.co/1000x500.png", // Adjusted for new aspect ratio
     dataAiHint: "computer accessories",
     linkHref: "/category/accessories",
     buttonText: "Shop Accessories",
-    titleSize: "text-2xl md:text-3xl",
-    descSize: "text-base",
+    titleSize: "text-xl md:text-2xl lg:text-3xl",
+    descSize: "text-sm",
     buttonSize: "lg" as "lg" | "sm" | "default" | "icon" | null | undefined,
     buttonVariant: "outline" as "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | null | undefined,
     textColor: "text-white",
@@ -63,6 +63,15 @@ const heroSlides = [
   },
 ];
 
+const rightSideOffer = {
+  title: "Limited Time Deal!",
+  description: "Get 20% off on selected motherboards.",
+  imageUrl: "https://placehold.co/400x600.png", // Vertical image
+  dataAiHint: "motherboard sale",
+  linkHref: "/category/motherboards",
+  buttonText: "Shop Motherboards",
+};
+
 export default function HeroSection() {
   const plugin = React.useRef(
     Autoplay({ delay: 5000, stopOnInteraction: true, stopOnMouseEnter: true })
@@ -70,58 +79,94 @@ export default function HeroSection() {
 
   return (
     <section className="container mx-auto px-4 py-8 md:py-12">
-      <Carousel
-        opts={{
-          align: "start",
-          loop: true,
-        }}
-        plugins={[plugin.current]}
-        className="w-full group"
-        onMouseEnter={plugin.current.stop}
-        onMouseLeave={plugin.current.play}
+      <div className="flex flex-col md:flex-row gap-6">
+        {/* Left Side Hero Slider (70%) */}
+        <div className="w-full md:w-[70%]">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            plugins={[plugin.current]}
+            className="w-full group"
+            onMouseEnter={plugin.current.stop}
+            onMouseLeave={plugin.current.play}
+          >
+            <CarouselContent>
+              {heroSlides.map((slide, index) => (
+                <CarouselItem key={index}>
+                  <div className="bg-card rounded-lg shadow-lg overflow-hidden group relative aspect-[16/9] md:aspect-[20/9]"> {/* Adjusted aspect ratio */}
+                    <Image
+                      src={slide.imageUrl}
+                      alt={slide.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 70vw"
+                      priority={index === 0}
+                      data-ai-hint={slide.dataAiHint}
+                    />
+                    <div className={`absolute inset-0 p-4 md:p-6 lg:p-8 flex flex-col justify-end ${slide.overlayClass}`}>
+                      <h2 className={`${slide.titleSize} font-headline font-bold ${slide.textColor} mb-1 md:mb-2`}>
+                        {slide.title}
+                      </h2>
+                      <p className={`${slide.descSize} ${slide.descColor} mb-3 md:mb-4 max-w-md`}>
+                        {slide.description}
+                      </p>
+                      <Link href={slide.linkHref}>
+                        <Button 
+                          size={slide.buttonSize} 
+                          variant={slide.buttonVariant === "outline" ? "outline" : "default"} 
+                          className={`
+                            ${slide.buttonVariant === "outline" 
+                              ? "text-white border-white hover:bg-white hover:text-primary" 
+                              : "bg-accent hover:bg-accent/90 text-accent-foreground"}
+                            text-xs md:text-sm py-2 px-3 md:py-2.5 md:px-5
+                          `}
+                        >
+                          {slide.buttonText} <ArrowRight className="ml-1 md:ml-2 h-4 w-4 md:h-5 md:w-5" />
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 text-white bg-black/30 hover:bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <CarouselNext className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 text-white bg-black/30 hover:bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity" />
+          </Carousel>
+        </div>
 
-      >
-        <CarouselContent>
-          {heroSlides.map((slide, index) => (
-            <CarouselItem key={index}>
-              <div className="bg-card rounded-lg shadow-lg overflow-hidden group relative aspect-[21/9]"> {/* Adjusted aspect ratio */}
-                <Image
-                  src={slide.imageUrl}
-                  alt={slide.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  priority={index === 0}
-                  data-ai-hint={slide.dataAiHint}
-                />
-                <div className={`absolute inset-0 p-6 md:p-8 flex flex-col justify-end ${slide.overlayClass}`}>
-                  <h2 className={`${slide.titleSize} font-headline font-bold ${slide.textColor} mb-2 md:mb-3`}>
-                    {slide.title}
-                  </h2>
-                  <p className={`${slide.descSize} ${slide.descColor} mb-4 md:mb-6 max-w-lg`}>
-                    {slide.description}
-                  </p>
-                  <Link href={slide.linkHref}>
-                    <Button 
-                      size={slide.buttonSize} 
-                      variant={slide.buttonVariant === "outline" ? "outline" : "default"} 
-                      className={
-                        slide.buttonVariant === "outline" 
-                        ? "text-white border-white hover:bg-white hover:text-primary" 
-                        : "bg-accent hover:bg-accent/90 text-accent-foreground"
-                      }
-                    >
-                      {slide.buttonText} <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-white bg-black/30 hover:bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity" />
-        <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-white bg-black/30 hover:bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity" />
-      </Carousel>
+        {/* Right Side Vertical Image (30%) */}
+        <div className="w-full md:w-[30%]">
+          <div className="bg-card rounded-lg shadow-lg overflow-hidden group relative h-full flex flex-col">
+            <Link href={rightSideOffer.linkHref} className="block relative aspect-[3/4] md:aspect-auto md:flex-grow">
+              <Image
+                src={rightSideOffer.imageUrl}
+                alt={rightSideOffer.title}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 30vw"
+                data-ai-hint={rightSideOffer.dataAiHint}
+              />
+               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent p-4 flex flex-col justify-end">
+                 <h3 className="text-lg md:text-xl font-headline font-bold text-white mb-1">{rightSideOffer.title}</h3>
+                 <p className="text-xs md:text-sm text-gray-200 mb-2">{rightSideOffer.description}</p>
+               </div>
+            </Link>
+            <div className="p-4">
+              <Link href={rightSideOffer.linkHref}>
+                <Button 
+                  size="default"
+                  variant="outline"
+                  className="w-full text-primary border-primary hover:bg-primary hover:text-primary-foreground"
+                >
+                  {rightSideOffer.buttonText} <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
