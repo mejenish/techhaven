@@ -19,7 +19,7 @@ const heroSlides = [
   {
     title: "Unleash Peak Performance",
     description: "Discover our latest range of high-powered laptops and cutting-edge electronics.",
-    imageUrl: "https://placehold.co/1000x500.png", // Adjusted for new aspect ratio
+    imageUrl: "https://placehold.co/1000x500.png",
     dataAiHint: "modern tech setup",
     linkHref: "/category/laptops",
     buttonText: "Shop Laptops",
@@ -34,7 +34,7 @@ const heroSlides = [
   {
     title: "Explore New Heights with Drones",
     description: "Capture breathtaking views with our advanced drones. Perfect for hobbyists and professionals.",
-    imageUrl: "https://placehold.co/1000x500.png", // Adjusted for new aspect ratio
+    imageUrl: "https://placehold.co/1000x500.png",
     dataAiHint: "drone aerial shot",
     linkHref: "/category/drones",
     buttonText: "View Drones",
@@ -49,7 +49,7 @@ const heroSlides = [
   {
     title: "Accessorize Your Tech Life",
     description: "Find the perfect accessories to complete your tech ensemble, from keyboards to headphones.",
-    imageUrl: "https://placehold.co/1000x500.png", // Adjusted for new aspect ratio
+    imageUrl: "https://placehold.co/1000x500.png",
     dataAiHint: "computer accessories",
     linkHref: "/category/accessories",
     buttonText: "Shop Accessories",
@@ -66,10 +66,10 @@ const heroSlides = [
 const rightSideOffer = {
   title: "Limited Time Deal!",
   description: "Get 20% off on selected motherboards.",
-  imageUrl: "https://placehold.co/400x600.png", // Vertical image
+  imageUrl: "https://placehold.co/400x600.png", 
   dataAiHint: "motherboard sale",
   linkHref: "/category/motherboards",
-  buttonText: "Shop Motherboards",
+  // buttonText: "Shop Motherboards", // Button removed
 };
 
 export default function HeroSection() {
@@ -95,7 +95,7 @@ export default function HeroSection() {
             <CarouselContent>
               {heroSlides.map((slide, index) => (
                 <CarouselItem key={index}>
-                  <div className="bg-card rounded-lg shadow-lg overflow-hidden group relative aspect-[16/9] md:aspect-[20/9]"> {/* Adjusted aspect ratio */}
+                  <div className="bg-card rounded-lg shadow-lg overflow-hidden group relative aspect-[16/9] md:aspect-[20/9]">
                     <Image
                       src={slide.imageUrl}
                       alt={slide.title}
@@ -138,8 +138,8 @@ export default function HeroSection() {
 
         {/* Right Side Vertical Image (30%) */}
         <div className="w-full md:w-[30%]">
-          <div className="bg-card rounded-lg shadow-lg overflow-hidden group relative h-full flex flex-col">
-            <Link href={rightSideOffer.linkHref} className="block relative aspect-[3/4] md:aspect-auto md:flex-grow">
+          <Link href={rightSideOffer.linkHref} className="block bg-card rounded-lg shadow-lg overflow-hidden group relative h-full">
+            <div className="relative aspect-[3/4] md:aspect-auto md:h-full">
               <Image
                 src={rightSideOffer.imageUrl}
                 alt={rightSideOffer.title}
@@ -148,23 +148,12 @@ export default function HeroSection() {
                 sizes="(max-width: 768px) 100vw, 30vw"
                 data-ai-hint={rightSideOffer.dataAiHint}
               />
-               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent p-4 flex flex-col justify-end">
-                 <h3 className="text-lg md:text-xl font-headline font-bold text-white mb-1">{rightSideOffer.title}</h3>
-                 <p className="text-xs md:text-sm text-gray-200 mb-2">{rightSideOffer.description}</p>
+               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent p-4 md:p-6 flex flex-col justify-end">
+                 <h3 className="text-xl md:text-2xl font-headline font-bold text-white mb-1 md:mb-2">{rightSideOffer.title}</h3>
+                 <p className="text-sm md:text-base text-gray-200">{rightSideOffer.description}</p>
                </div>
-            </Link>
-            <div className="p-4">
-              <Link href={rightSideOffer.linkHref}>
-                <Button 
-                  size="default"
-                  variant="outline"
-                  className="w-full text-primary border-primary hover:bg-primary hover:text-primary-foreground"
-                >
-                  {rightSideOffer.buttonText} <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </section>
