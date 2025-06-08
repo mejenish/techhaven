@@ -14,7 +14,7 @@ export let mockProducts: Product[] = [
     featured: true,
     rating: 4.8,
     reviewsCount: 120,
-    dataAiHint: 'laptop modern',
+    dataAiHint: 'ultrabook laptop',
     specifications: {
       RAM: '16GB DDR4',
       Storage: '512GB NVMe SSD',
@@ -52,7 +52,7 @@ export let mockProducts: Product[] = [
     description: 'Comfortable and precise wireless mouse.',
     slug: 'wireless-ergonomic-mouse',
     featured: true,
-    dataAiHint: 'computer mouse',
+    dataAiHint: 'ergonomic mouse',
     specifications: {
       Connectivity: 'Bluetooth 5.0, 2.4GHz Wireless',
       DPI: 'Adjustable up to 4000 DPI',
@@ -67,7 +67,7 @@ export let mockProducts: Product[] = [
     imageUrl: 'https://placehold.co/400x300.png',
     description: 'RGB mechanical keyboard for gaming and typing.',
     slug: 'mechanical-keyboard-rgb',
-    dataAiHint: 'keyboard colorful',
+    dataAiHint: 'mechanical keyboard',
     specifications: {
       SwitchType: 'Blue Mechanical Switches',
       Backlight: 'Per-key RGB',
@@ -85,7 +85,7 @@ export let mockProducts: Product[] = [
     featured: true,
     rating: 4.7,
     reviewsCount: 75,
-    dataAiHint: 'drone flying',
+    dataAiHint: 'camera drone',
     specifications: {
       Camera: '4K HDR Video, 20MP Photos',
       FlightTime: '30 minutes',
@@ -103,7 +103,7 @@ export let mockProducts: Product[] = [
     description: 'Fast and agile FPV drone for racing.',
     slug: 'stealthwing-fpv-drone',
     onSale: true,
-    dataAiHint: 'racing drone',
+    dataAiHint: 'fpv drone',
   },
   {
     id: '7',
@@ -114,7 +114,7 @@ export let mockProducts: Product[] = [
     description: 'High-end X570 motherboard for AMD Ryzen.',
     slug: 'motherboard-x570-master',
     featured: true,
-    dataAiHint: 'motherboard circuit',
+    dataAiHint: 'amd motherboard',
     specifications: {
       Chipset: 'AMD X570',
       Socket: 'AM4',
@@ -132,7 +132,7 @@ export let mockProducts: Product[] = [
     description: 'Reliable B550 motherboard with excellent features.',
     slug: 'motherboard-b550-phantom',
     onSale: true,
-    dataAiHint: 'computer component',
+    dataAiHint: 'b550 motherboard',
   },
   {
     id: '9',
@@ -142,7 +142,7 @@ export let mockProducts: Product[] = [
     imageUrl: 'https://placehold.co/600x400.png',
     description: 'Crystal clear 27-inch 4K UHD monitor.',
     slug: '4k-uhd-monitor-27',
-    dataAiHint: 'computer monitor',
+    dataAiHint: '4k monitor',
     rating: 4.6,
     reviewsCount: 88,
   },
@@ -154,7 +154,7 @@ export let mockProducts: Product[] = [
     imageUrl: 'https://placehold.co/400x300.png',
     description: 'Easy-to-fly compact drone, perfect for beginners.',
     slug: 'compact-drone-minifly',
-    dataAiHint: 'small drone',
+    dataAiHint: 'mini drone',
   },
   {
     id: '11',
@@ -167,7 +167,7 @@ export let mockProducts: Product[] = [
     featured: true,
     rating: 4.5,
     reviewsCount: 60,
-    dataAiHint: 'smart home',
+    dataAiHint: 'smart hub',
     specifications: {
       Compatibility: 'Zigbee, Z-Wave, Wi-Fi, Bluetooth',
       VoiceAssistant: 'Google Assistant, Alexa',
@@ -185,7 +185,7 @@ export let mockProducts: Product[] = [
     originalPrice: 299.00,
     rating: 4.9,
     reviewsCount: 150,
-    dataAiHint: 'headphones audio',
+    dataAiHint: 'noise cancelling headphones',
   },
   {
     id: '13',
@@ -230,7 +230,7 @@ export let mockProducts: Product[] = [
     description: 'High-definition 1080p webcam for streaming and video calls.',
     slug: 'webcam-prostream-1080p',
     onSale: true,
-    dataAiHint: 'webcam streaming',
+    dataAiHint: 'webcam stream',
   },
   {
     id: '17',
@@ -254,3 +254,4 @@ export let mockProducts: Product[] = [
     dataAiHint: 'travel laptop',
   }
 ];
+
