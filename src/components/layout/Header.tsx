@@ -59,11 +59,11 @@ function CategoryMenu({ category }: CategoryMenuProps) {
           </Button>
         </DropdownMenuTrigger>
       </div>
-      <DropdownMenuContent 
-        align="start" 
+      <DropdownMenuContent
+        align="start"
         className="mt-1"
-        onMouseEnter={() => setIsOpen(true)} 
-        onMouseLeave={() => setIsOpen(false)} 
+        onMouseEnter={() => setIsOpen(true)}
+        onMouseLeave={() => setIsOpen(false)}
       >
         {category.subCategories.map((subCategory) => (
           <DropdownMenuItem key={subCategory.name} asChild>
@@ -96,19 +96,21 @@ export default function Header() {
               <Input type="search" placeholder="Search products..." className="pr-10 w-40 lg:w-64" />
               <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             </div>
-            <Button variant="ghost" size="icon" aria-label="User Account">
-              <UserCircle className="h-6 w-6 text-primary" />
+            <Button asChild variant="ghost" size="icon" aria-label="User Account">
+              <Link href="/admin/login">
+                <UserCircle className="h-6 w-6 text-primary" />
+              </Link>
             </Button>
-            <Link href="/cart" passHref>
-              <Button variant="ghost" size="icon" aria-label="Shopping Cart" className="relative">
+            <Button asChild variant="ghost" size="icon" aria-label="Shopping Cart" className="relative">
+              <Link href="/cart">
                 <ShoppingCart className="h-6 w-6 text-primary" />
                 {totalQuantity > 0 && (
                   <span className="absolute top-0 right-0 -mt-1 -mr-1 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-xs text-accent-foreground">
                     {totalQuantity}
                   </span>
                 )}
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         </div>
         {/* Mobile Search and Categories */}
