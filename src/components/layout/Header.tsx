@@ -62,8 +62,8 @@ function CategoryMenu({ category }: CategoryMenuProps) {
       <DropdownMenuContent 
         align="start" 
         className="mt-1"
-        onMouseEnter={() => setIsOpen(true)} // Keep open when mouse enters content
-        onMouseLeave={() => setIsOpen(false)} // Close when mouse leaves content
+        onMouseEnter={() => setIsOpen(true)} 
+        onMouseLeave={() => setIsOpen(false)} 
       >
         {category.subCategories.map((subCategory) => (
           <DropdownMenuItem key={subCategory.name} asChild>
@@ -99,14 +99,16 @@ export default function Header() {
             <Button variant="ghost" size="icon" aria-label="User Account">
               <UserCircle className="h-6 w-6 text-primary" />
             </Button>
-            <Button variant="ghost" size="icon" aria-label="Shopping Cart" className="relative">
-              <ShoppingCart className="h-6 w-6 text-primary" />
-              {totalQuantity > 0 && (
-                <span className="absolute top-0 right-0 -mt-1 -mr-1 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-xs text-accent-foreground">
-                  {totalQuantity}
-                </span>
-              )}
-            </Button>
+            <Link href="/cart" passHref>
+              <Button variant="ghost" size="icon" aria-label="Shopping Cart" className="relative">
+                <ShoppingCart className="h-6 w-6 text-primary" />
+                {totalQuantity > 0 && (
+                  <span className="absolute top-0 right-0 -mt-1 -mr-1 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-xs text-accent-foreground">
+                    {totalQuantity}
+                  </span>
+                )}
+              </Button>
+            </Link>
           </div>
         </div>
         {/* Mobile Search and Categories */}
