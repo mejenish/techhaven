@@ -1,6 +1,8 @@
+
 import type { Product } from '@/types';
 
-export const mockProducts: Product[] = [
+// Make mockProducts export mutable for demo CRUD operations
+export let mockProducts: Product[] = [
   {
     id: '1',
     name: 'UltraBook Pro X1',
