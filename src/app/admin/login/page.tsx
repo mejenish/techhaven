@@ -9,17 +9,23 @@ import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-// Placeholder login action
+// Mock admin credentials
+const MOCK_ADMIN_EMAIL = "admin@example.com";
+const MOCK_ADMIN_PASSWORD = "password123";
+
+// Mock login action
 async function loginAction(formData: FormData) {
   const email = formData.get('email') as string;
-  // In a real app, you would validate credentials against a backend/database
-  // and set up a session or token.
+  const password = formData.get('password') as string;
+
   console.log("Attempting login for:", email);
-  // Simulate successful login for demo purposes
-  if (email) {
+
+  if (email === MOCK_ADMIN_EMAIL && password === MOCK_ADMIN_PASSWORD) {
+    // In a real app, you would set up a session or token here.
+    // For this mock setup, we just return success.
     return { success: true };
   }
-  return { success: false, error: "Invalid credentials" };
+  return { success: false, error: "Invalid email or password" };
 }
 
 
@@ -29,14 +35,14 @@ export default function AdminLoginPage() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setError(null); // Clear previous errors
     const formData = new FormData(event.currentTarget);
     const result = await loginAction(formData);
     if (result.success) {
       // Redirect to admin dashboard on successful login
-      // For now, redirecting to products page as dashboard is not yet created
-      router.push('/admin/products');
+      router.push('/admin/dashboard');
     } else {
-      setError(result.error || "Login failed");
+      setError(result.error || "Login failed. Please try again.");
     }
   };
 
@@ -46,7 +52,8 @@ export default function AdminLoginPage() {
         <CardHeader>
           <CardTitle className="text-2xl">Admin Login</CardTitle>
           <CardDescription>
-            Enter your email below to login to your admin account
+            Enter your admin credentials below. <br />
+            (Hint: admin@example.com / password123)
           </CardDescription>
         </CardHeader>
         <CardContent>
