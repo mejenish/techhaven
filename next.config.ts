@@ -18,6 +18,9 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
+    domains: [
+      'mudita.com.np'
+    ],
   },
   experimental: {
     allowedDevOrigins: [

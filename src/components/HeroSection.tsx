@@ -17,7 +17,7 @@ const heroSlides = [
   {
     title: "Unleash Peak Performance",
     description: "Discover our latest range of high-powered laptops and cutting-edge electronics.",
-    imageUrl: "https://placehold.co/1000x500.png",
+    imageUrl: "https://mudita.com.np/media/Legion_9_copy.webp",
     dataAiHint: "modern tech setup",
     linkHref: "/category/laptops",
     titleSize: "text-2xl md:text-3xl lg:text-4xl",
@@ -29,7 +29,7 @@ const heroSlides = [
   {
     title: "Explore New Heights with Drones",
     description: "Capture breathtaking views with our advanced drones. Perfect for hobbyists and professionals.",
-    imageUrl: "https://placehold.co/1000x500.png",
+    imageUrl: "https://mudita.com.np/media/Legion_9_copy.webp",
     dataAiHint: "drone aerial shot",
     linkHref: "/category/drones",
     titleSize: "text-xl md:text-2xl lg:text-3xl",
@@ -41,7 +41,7 @@ const heroSlides = [
   {
     title: "Accessorize Your Tech Life",
     description: "Find the perfect accessories to complete your tech ensemble, from keyboards to headphones.",
-    imageUrl: "https://placehold.co/1000x500.png",
+    imageUrl: "https://mudita.com.np/media/Legion_9_copy.webp",
     dataAiHint: "computer accessories",
     linkHref: "/category/accessories",
     titleSize: "text-xl md:text-2xl lg:text-3xl",
@@ -55,7 +55,7 @@ const heroSlides = [
 const rightSideOffer = {
   title: "Limited Time Deal!",
   description: "Get 20% off on selected motherboards.",
-  imageUrl: "https://placehold.co/400x600.png", 
+  imageUrl: "https://mudita.com.np/media/Legion_9_copy.webp", 
   dataAiHint: "motherboard sale",
   linkHref: "/category/motherboards",
 };
