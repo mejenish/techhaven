@@ -20,13 +20,12 @@ export default function CheckoutPage() {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const [cardNumber, setCardNumber] = useState("");
 
   const totalPrice = getCartTotalPrice();
 
   if (cart.length === 0 && !paymentSuccess) {
     // Redirect to cart if cart is empty and payment hasn't been made
-    // This check should ideally happen sooner, e.g. in a route guard or useEffect
-    // For simplicity, handling it here.
     if (typeof window !== 'undefined') {
         router.push('/cart');
     }
@@ -57,6 +56,14 @@ export default function CheckoutPage() {
       variant: "default",
       duration: 5000,
     });
+  };
+
+  const handleCardNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const rawValue = event.target.value;
+    // Remove non-digits and limit to 16 characters
+    const numericValue = rawValue.replace(/\D/g, '');
+    const truncatedValue = numericValue.slice(0, 16);
+    setCardNumber(truncatedValue);
   };
 
   if (paymentSuccess) {
@@ -103,7 +110,16 @@ export default function CheckoutPage() {
                 <form onSubmit={handleMockPayment} className="space-y-4">
                   <div>
                     <Label htmlFor="cardNumber">Card Number</Label>
-                    <Input id="cardNumber" type="text" placeholder="0000 0000 0000 0000" required />
+                    <Input 
+                      id="cardNumber" 
+                      type="text" // Use text to control input value directly
+                      placeholder="0000 0000 0000 0000" 
+                      value={cardNumber}
+                      onChange={handleCardNumberChange}
+                      maxLength={19} // MaxLength with spaces, actual digits are 16
+                      pattern="\d*" // Suggests numeric input to browsers
+                      required 
+                    />
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
