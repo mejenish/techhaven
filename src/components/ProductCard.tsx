@@ -30,8 +30,8 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <Card className="group overflow-hidden rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full">
       <Link href={`/products/${product.slug}`} className="block">
-        <CardHeader className="p-0">
-          <div className="aspect-square overflow-hidden">
+        <CardHeader className="p-4">
+          <div className="aspect-square overflow-hidden rounded-md">
             <Image
               src={product.imageUrl}
               alt={product.name}
@@ -83,3 +83,4 @@ export default function ProductCard({ product }: ProductCardProps) {
     </Card>
   );
 }
+
